@@ -1,0 +1,200 @@
+.cube-container {
+    width: 100%;
+    height: 500px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    perspective: 1000px;
+}
+
+.cube-wrapper {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    transform-style: preserve-3d;
+    animation: rotateCube 20s linear infinite;
+}
+
+.cube-wrapper:hover {
+    animation-play-state: paused;
+}
+
+.cube {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+}
+
+.cube-face {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    border: 2px solid var(--color-cyan);
+    background: linear-gradient(135deg,
+            rgba(0, 245, 255, 0.1),
+            rgba(182, 37, 255, 0.1));
+    box-shadow:
+        0 0 30px rgba(0, 245, 255, 0.5) inset,
+        0 0 50px rgba(0, 245, 255, 0.3);
+    backdrop-filter: blur(5px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cube-face::before {
+    content: '';
+    position: absolute;
+    width: 80%;
+    height: 80%;
+    border: 1px solid rgba(182, 37, 255, 0.5);
+    background: radial-gradient(circle, rgba(255, 0, 110, 0.2), transparent);
+}
+
+.cube-face.front {
+    transform: translateZ(150px);
+}
+
+.cube-face.back {
+    transform: rotateY(180deg) translateZ(150px);
+}
+
+.cube-face.left {
+    transform: rotateY(-90deg) translateZ(150px);
+}
+
+.cube-face.right {
+    transform: rotateY(90deg) translateZ(150px);
+}
+
+.cube-face.top {
+    transform: rotateX(90deg) translateZ(150px);
+}
+
+.cube-face.bottom {
+    transform: rotateX(-90deg) translateZ(150px);
+}
+
+@keyframes rotateCube {
+    from {
+        transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+    }
+
+    to {
+        transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg);
+    }
+}
+
+/* Particles */
+.particles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: var(--color-magenta);
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    box-shadow: 0 0 10px rgba(255, 0, 110, 0.8);
+    animation: floatParticle var(--duration, 3s) ease-in-out infinite;
+    animation-delay: var(--delay, 0s);
+}
+
+.particle:nth-child(3n) {
+    background: var(--color-cyan);
+    box-shadow: 0 0 10px rgba(0, 245, 255, 0.8);
+}
+
+.particle:nth-child(3n+1) {
+    background: var(--color-purple);
+    box-shadow: 0 0 10px rgba(182, 37, 255, 0.8);
+}
+
+@keyframes floatParticle {
+
+    0%,
+    100% {
+        transform: translate(0, 0);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    90% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(var(--x, 0), var(--y, 0));
+        opacity: 0;
+    }
+}
+
+/* Glow effect around cube */
+.cube-container::before {
+    content: '';
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(0, 245, 255, 0.3) 0%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(60px);
+    animation: pulseGlow 3s ease-in-out infinite;
+    z-index: -1;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .cube-container {
+        height: 350px;
+    }
+
+    .cube-wrapper {
+        width: 200px;
+        height: 200px;
+    }
+
+    .cube-face {
+        width: 200px;
+        height: 200px;
+    }
+
+    .cube-face.front,
+    .cube-face.back,
+    .cube-face.left,
+    .cube-face.right,
+    .cube-face.top,
+    .cube-face.bottom {
+        transform: translateZ(100px);
+    }
+
+    .cube-face.back {
+        transform: rotateY(180deg) translateZ(100px);
+    }
+
+    .cube-face.left {
+        transform: rotateY(-90deg) translateZ(100px);
+    }
+
+    .cube-face.right {
+        transform: rotateY(90deg) translateZ(100px);
+    }
+
+    .cube-face.top {
+        transform: rotateX(90deg) translateZ(100px);
+    }
+
+    .cube-face.bottom {
+        transform: rotateX(-90deg) translateZ(100px);
+    }
+}

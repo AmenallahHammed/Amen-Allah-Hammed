@@ -1,0 +1,207 @@
+.loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: var(--bg-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    transition: opacity 0.5s ease;
+}
+
+.loading-screen.fade-out {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.loading-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+/* 3D Cube */
+.loading-cube {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    transform-style: preserve-3d;
+    animation: rotateCube 3s linear infinite;
+}
+
+.cube-face {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    border: 2px solid var(--color-cyan);
+    background: linear-gradient(135deg, rgba(0, 245, 255, 0.1), rgba(182, 37, 255, 0.1));
+    box-shadow: 0 0 20px rgba(0, 245, 255, 0.3) inset;
+}
+
+.cube-face.front {
+    transform: translateZ(50px);
+}
+
+.cube-face.back {
+    transform: rotateY(180deg) translateZ(50px);
+}
+
+.cube-face.left {
+    transform: rotateY(-90deg) translateZ(50px);
+}
+
+.cube-face.right {
+    transform: rotateY(90deg) translateZ(50px);
+}
+
+.cube-face.top {
+    transform: rotateX(90deg) translateZ(50px);
+}
+
+.cube-face.bottom {
+    transform: rotateX(-90deg) translateZ(50px);
+}
+
+@keyframes rotateCube {
+    from {
+        transform: rotateX(0deg) rotateY(0deg);
+    }
+
+    to {
+        transform: rotateX(360deg) rotateY(360deg);
+    }
+}
+
+/* Loading Text */
+.loading-text {
+    text-align: center;
+}
+
+.loading-text h1 {
+    font-size: 2rem;
+    letter-spacing: 4px;
+    margin-bottom: 0.5rem;
+}
+
+.loading-dots {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+}
+
+.loading-dots span {
+    width: 8px;
+    height: 8px;
+    background: var(--color-cyan);
+    border-radius: 50%;
+    animation: dotPulse 1.5s ease-in-out infinite;
+}
+
+.loading-dots span:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.loading-dots span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.loading-dots span:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes dotPulse {
+
+    0%,
+    100% {
+        opacity: 0.3;
+        transform: scale(0.8);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.2);
+    }
+}
+
+/* Progress Bar */
+.loading-progress {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.progress-track {
+    width: 100%;
+    height: 4px;
+    background: rgba(0, 245, 255, 0.2);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--color-cyan), var(--color-purple));
+    border-radius: 2px;
+    transition: width 0.3s ease;
+    box-shadow: 0 0 10px rgba(0, 245, 255, 0.5);
+}
+
+.progress-percentage {
+    text-align: center;
+    font-family: var(--font-accent);
+    font-size: 0.9rem;
+    color: var(--color-cyan);
+    letter-spacing: 2px;
+}
+
+/* Background Grid */
+.loading-grid {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+        linear-gradient(rgba(0, 245, 255, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 245, 255, 0.1) 1px, transparent 1px);
+    background-size: 50px 50px;
+    background-position: center center;
+    opacity: 0.3;
+    z-index: 1;
+}
+
+@media (max-width: 768px) {
+    .loading-cube {
+        width: 80px;
+        height: 80px;
+    }
+
+    .cube-face {
+        width: 80px;
+        height: 80px;
+    }
+
+    .cube-face.front,
+    .cube-face.back,
+    .cube-face.left,
+    .cube-face.right,
+    .cube-face.top,
+    .cube-face.bottom {
+        transform: translateZ(40px);
+    }
+
+    .loading-text h1 {
+        font-size: 1.5rem;
+    }
+
+    .loading-progress {
+        width: 250px;
+    }
+}

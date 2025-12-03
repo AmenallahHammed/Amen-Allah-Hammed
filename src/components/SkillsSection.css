@@ -1,0 +1,332 @@
+.skills-section {
+    background: var(--bg-dark);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+    padding: 2rem;
+}
+
+/* Override global container to center content */
+.skills-section .container {
+    justify-content: center;
+    display: flex;
+    width: 100%;
+}
+
+.skills-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+}
+
+/* Header Text */
+.skills-header-text {
+    text-align: center;
+    margin-bottom: 4rem;
+    z-index: 10;
+}
+
+.skills-header-text h2 {
+    font-family: var(--font-body);
+    font-size: 1.8rem;
+    font-weight: 400;
+    color: var(--text-light);
+    line-height: 1.5;
+}
+
+.highlight-purple {
+    color: var(--color-purple);
+    font-weight: 700;
+    text-shadow: 0 0 15px rgba(182, 37, 255, 0.5);
+}
+
+/* Orbit System Container */
+.orbit-system {
+    position: relative;
+    width: 800px;
+    height: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* transform: scale(0.9); */
+}
+
+/* Central Core */
+.central-core {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #2a1b3d, #000);
+    border: 2px solid rgba(182, 37, 255, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 20;
+    box-shadow:
+        0 0 30px rgba(182, 37, 255, 0.3),
+        inset 0 0 20px rgba(182, 37, 255, 0.2);
+}
+
+.core-glow {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: var(--color-purple);
+    filter: blur(40px);
+    opacity: 0.4;
+    animation: pulseCore 3s infinite alternate;
+}
+
+.core-text {
+    font-family: var(--font-heading);
+    font-size: 4rem;
+    color: white;
+    text-shadow: 0 0 10px var(--color-cyan);
+    z-index: 2;
+}
+
+@keyframes pulseCore {
+    0% {
+        opacity: 0.3;
+        transform: scale(0.9);
+    }
+
+    100% {
+        opacity: 0.6;
+        transform: scale(1.1);
+    }
+}
+
+/* Top Cluster (Tree) */
+.top-cluster {
+    position: absolute;
+    top: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    height: 350px;
+    z-index: 15;
+}
+
+.cluster-lines {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.connection-line {
+    fill: none;
+    stroke: rgba(182, 37, 255, 0.3);
+    stroke-width: 1;
+    stroke-dasharray: 5 5;
+    animation: dashFlow 20s linear infinite;
+}
+
+@keyframes dashFlow {
+    to {
+        stroke-dashoffset: -100;
+    }
+}
+
+.cluster-icons {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    position: absolute;
+    top: 30px;
+    width: 100%;
+}
+
+.cluster-icons-row-2 {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    position: absolute;
+    top: 90px;
+    width: 100%;
+}
+
+.tech-orb {
+    width: 50px;
+    height: 50px;
+    background: rgba(22, 33, 62, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-light);
+    font-size: 1.5rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.tech-orb.small {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+    opacity: 0.8;
+}
+
+.tech-orb:hover {
+    transform: translateY(-5px) scale(1.1);
+    border-color: var(--color-cyan);
+    box-shadow: 0 0 15px var(--color-cyan);
+    color: var(--color-cyan);
+    z-index: 100;
+}
+
+/* Orbital Rings */
+.orbital-rings {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotateX(60deg);
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    /* Allow clicking through rings */
+    transform-style: preserve-3d;
+}
+
+.ring {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    box-shadow: 0 0 20px rgba(0, 245, 255, 0.05);
+}
+
+.inner-ring {
+    width: 300px;
+    height: 300px;
+    animation: spinRight 20s linear infinite;
+}
+
+.middle-ring {
+    width: 500px;
+    height: 500px;
+    border-color: rgba(182, 37, 255, 0.1);
+    animation: spinLeft 30s linear infinite;
+}
+
+.outer-ring {
+    width: 700px;
+    height: 700px;
+    border-color: rgba(255, 0, 110, 0.1);
+    animation: spinRight 40s linear infinite;
+}
+
+.orbit-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 40px;
+    height: 40px;
+    margin-left: -20px;
+    margin-top: -20px;
+    background: rgba(10, 10, 15, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    font-size: 1.2rem;
+    /* 
+       Calculate position based on angle.
+       Since we can't use trig in pure CSS variables easily without calc(sin), 
+       we'll use transform rotation and counter-rotation.
+    */
+    transform: rotate(var(--angle)) translate(calc(50% + 150px)) rotate(calc(-1 * var(--angle))) rotateX(-60deg);
+    /* Counter-rotate to keep icon upright */
+    pointer-events: auto;
+    transition: all 0.3s ease;
+}
+
+/* Adjust translation distance for each ring */
+.inner-ring .orbit-icon {
+    transform: rotate(var(--angle)) translateX(150px) rotate(calc(-1 * var(--angle))) rotateX(-60deg);
+}
+
+.middle-ring .orbit-icon {
+    transform: rotate(var(--angle)) translateX(250px) rotate(calc(-1 * var(--angle))) rotateX(-60deg);
+}
+
+.outer-ring .orbit-icon {
+    transform: rotate(var(--angle)) translateX(350px) rotate(calc(-1 * var(--angle))) rotateX(-60deg);
+}
+
+.orbit-icon:hover {
+    color: var(--color-cyan);
+    border-color: var(--color-cyan);
+    box-shadow: 0 0 15px var(--color-cyan);
+    transform: rotate(var(--angle)) translateX(calc(100% + 150px)) rotate(calc(-1 * var(--angle))) rotateX(-60deg) scale(1.2);
+    z-index: 100;
+}
+
+@keyframes spinRight {
+    from {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+@keyframes spinLeft {
+    from {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+
+    to {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .orbit-system {
+        transform: scale(0.7);
+    }
+
+    .skills-header-text h2 {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .orbit-system {
+        transform: scale(0.5);
+        height: 500px;
+    }
+
+    .skills-header-text {
+        margin-bottom: 2rem;
+    }
+
+    .skills-header-text h2 {
+        font-size: 1.2rem;
+    }
+
+    .top-cluster {
+        top: -20px;
+    }
+}
