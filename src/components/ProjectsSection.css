@@ -98,6 +98,7 @@
     width: 100%;
     position: relative;
     overflow: hidden;
+    cursor: pointer;
 }
 
 .thumbnail-overlay {
@@ -192,6 +193,10 @@
     font-size: 0.9rem;
     font-weight: 600;
     transition: all 0.3s ease;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
 }
 
 .live-demo {
