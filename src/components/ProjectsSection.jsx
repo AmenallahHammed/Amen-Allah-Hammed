@@ -4,9 +4,9 @@ import { FaGithub, FaExternalLinkAlt, FaCode } from 'react-icons/fa';
 import { SiReact, SiTypescript, SiNextdotjs, SiTailwindcss, SiRedux, SiNodedotjs, SiMongodb, SiPython, SiPytorch, SiScikitlearn, SiOpencv, SiAngular, SiSupabase, SiFigma } from 'react-icons/si';
 
 // Import project images
-import kahdemniImg from '../assets/img1(kahdemni project).png';
-import resonanceImg from '../assets/img2(ressonance).png';
-import digitRecognitionImg from '../assets/img3(number prediction).png';
+import kahdemniImg from '../assets/kahdemni.png';
+import resonanceImg from '../assets/resonance.png';
+import digitRecognitionImg from '../assets/digit-recognition.png';
 
 const projectsData = [
     {
