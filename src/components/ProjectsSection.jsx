@@ -3,6 +3,11 @@ import './ProjectsSection.css';
 import { FaGithub, FaExternalLinkAlt, FaCode } from 'react-icons/fa';
 import { SiReact, SiTypescript, SiNextdotjs, SiTailwindcss, SiRedux, SiNodedotjs, SiMongodb, SiPython, SiPytorch, SiScikitlearn, SiOpencv, SiAngular, SiSupabase, SiFigma } from 'react-icons/si';
 
+// Import project images
+import kahdemniImg from '../assets/img1(kahdemni project).png';
+import resonanceImg from '../assets/img2(ressonance).png';
+import digitRecognitionImg from '../assets/img3(number prediction).png';
+
 const projectsData = [
     {
         id: 1,
@@ -16,7 +21,7 @@ const projectsData = [
         github: 'https://github.com/AmenallahHammed',
         demo: '#',
         color: 'cyan',
-        imageGradient: 'linear-gradient(135deg, #00f5ff 0%, #16213e 100%)'
+        image: resonanceImg
     },
     {
         id: 2,
@@ -30,7 +35,7 @@ const projectsData = [
         github: 'https://github.com/AmenallahHammed',
         demo: '#',
         color: 'purple',
-        imageGradient: 'linear-gradient(135deg, #b625ff 0%, #16213e 100%)'
+        image: digitRecognitionImg
     },
     {
         id: 3,
@@ -44,7 +49,7 @@ const projectsData = [
         github: 'https://github.com/AmenallahHammed',
         demo: '#',
         color: 'magenta',
-        imageGradient: 'linear-gradient(135deg, #ff006e 0%, #16213e 100%)'
+        image: kahdemniImg
     }
 ];
 
@@ -52,7 +57,7 @@ function ProjectCard({ project }) {
     return (
         <div className="project-card-new">
             {/* Thumbnail Image Area */}
-            <div className="project-thumbnail" style={{ background: project.imageGradient }}>
+            <div className="project-thumbnail" style={{ backgroundImage: `url(${project.image})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
                 <div className="thumbnail-overlay"></div>
                 <div className="thumbnail-content">
                     <span className="view-project">View Project</span>

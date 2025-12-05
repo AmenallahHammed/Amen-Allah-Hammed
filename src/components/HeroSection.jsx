@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import RotatingCube from './RotatingCube';
 import RotatingTitles from './RotatingTitles';
 import './HeroSection.css';
+import cvFile from '../assets/Resume_Amen_Allah_Hammed.pdf';
 
 export default function HeroSection() {
     const [glitchActive, setGlitchActive] = useState(false);
@@ -70,9 +71,9 @@ export default function HeroSection() {
                                 <Link to="/projects" className="btn btn-primary">
                                     View Projects
                                 </Link>
-                                <Link to="/contact" className="btn btn-outline">
-                                    Get In Touch
-                                </Link>
+                                <a href={cvFile} download="Resume_Amen_Allah_Hammed.pdf" className="btn btn-outline">
+                                    Download CV
+                                </a>
                             </div>
                         </div>
 
