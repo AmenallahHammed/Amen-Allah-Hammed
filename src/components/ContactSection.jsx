@@ -2,7 +2,7 @@ import { useState } from 'react';
 import './ContactSection.css';
 import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaArrowRight, FaPaperPlane, FaLinkedin, FaGithub } from 'react-icons/fa';
 
-export default function ContactSection() {
+export default function ContactSection({ id = 'contact' }) {
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -30,7 +30,7 @@ export default function ContactSection() {
     };
 
     return (
-        <section id="contact" className="section contact-section">
+        <section id={id} className="section contact-section">
             {/* Background Text */}
             <div className="bg-text">CONTACT</div>
 

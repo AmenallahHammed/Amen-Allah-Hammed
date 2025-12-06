@@ -1,11 +1,10 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import RotatingCube from './RotatingCube';
 import RotatingTitles from './RotatingTitles';
 import './HeroSection.css';
 import cvFile from '../assets/Resume_Amen_Allah_Hammed.pdf';
 
-export default function HeroSection() {
+export default function HeroSection({ id = 'home' }) {
     const [glitchActive, setGlitchActive] = useState(false);
 
     useEffect(() => {
@@ -21,7 +20,7 @@ export default function HeroSection() {
     }, []);
 
     return (
-        <section id="hero" className="section hero-section grid-bg scanlines">
+        <section id={id} className="section hero-section">
             <div className="container">
                 <div className="hero-content">
                     {/* Holographic UI Elements - System Stats */}
@@ -68,9 +67,9 @@ export default function HeroSection() {
                             </p>
 
                             <div className="hero-buttons">
-                                <Link to="/projects" className="btn btn-primary">
+                                <a href="#projects" className="btn btn-primary">
                                     View Projects
-                                </Link>
+                                </a>
                                 <a href={cvFile} download="Resume_Amen_Allah_Hammed.pdf" className="btn btn-outline">
                                     Download CV
                                 </a>
@@ -87,12 +86,6 @@ export default function HeroSection() {
                 </div>
             </div>
 
-            {/* Floating Geometric Shapes */}
-            <div className="floating-shapes">
-                <div className="shape shape-1"></div>
-                <div className="shape shape-2"></div>
-                <div className="shape shape-3"></div>
-            </div>
         </section>
     );
 }

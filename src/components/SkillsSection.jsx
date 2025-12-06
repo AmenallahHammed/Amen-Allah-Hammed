@@ -3,9 +3,9 @@ import { SiTypescript, SiCplusplus, SiSpringboot, SiDotnet, SiFastapi, SiAngular
 import { DiScrum } from 'react-icons/di';
 import './SkillsSection.css';
 
-export default function SkillsSection() {
+export default function SkillsSection({ id = 'skills' }) {
     return (
-        <section id="skills" className="section skills-section">
+        <section id={id} className="section skills-section">
             <div className="container">
                 <div className="skills-content">
                     {/* Header Text from Image */}

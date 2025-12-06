@@ -1,9 +1,9 @@
 import profileImg from '../assets/profile.jpg';
 import './AboutSection.css';
 
-export default function AboutSection() {
+export default function AboutSection({ id = 'about' }) {
     return (
-        <section id="about" className="section about-section">
+        <section id={id} className="section about-section">
             {/* Decorative Background Circles */}
             <div className="deco-circle top-left"></div>
             <div className="deco-circle bottom-right"></div>

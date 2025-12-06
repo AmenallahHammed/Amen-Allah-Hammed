@@ -1,4 +1,3 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
 import AboutSection from './components/AboutSection';
@@ -8,21 +7,24 @@ import ContactSection from './components/ContactSection';
 
 function App() {
     return (
-        <Router>
-            <div className="app">
-                <Navbar />
+        <div className="app">
+            <Navbar />
 
-                <main className="main-content">
-                    <Routes>
-                        <Route path="/" element={<HeroSection />} />
-                        <Route path="/about" element={<AboutSection />} />
-                        <Route path="/skills" element={<SkillsSection />} />
-                        <Route path="/projects" element={<ProjectsSection />} />
-                        <Route path="/contact" element={<ContactSection />} />
-                    </Routes>
-                </main>
-            </div>
-        </Router>
+            <main className="main-content">
+                {/* Floating Geometric Shapes - Global Background */}
+                <div className="floating-shapes">
+                    <div className="shape shape-1"></div>
+                    <div className="shape shape-2"></div>
+                    <div className="shape shape-3"></div>
+                </div>
+
+                <HeroSection id="home" />
+                <AboutSection id="about" />
+                <SkillsSection id="skills" />
+                <ProjectsSection id="projects" />
+                <ContactSection id="contact" />
+            </main>
+        </div>
     );
 }
 

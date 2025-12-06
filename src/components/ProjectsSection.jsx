@@ -106,7 +106,7 @@ function ProjectCard({ project, onViewProject }) {
     );
 }
 
-export default function ProjectsSection() {
+export default function ProjectsSection({ id = 'projects' }) {
     const [selectedProject, setSelectedProject] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -121,7 +121,7 @@ export default function ProjectsSection() {
     };
 
     return (
-        <section id="projects" className="section projects-section">
+        <section id={id} className="section projects-section">
             <div className="container">
                 <div className="projects-layout">
                     <div className="projects-header-new">

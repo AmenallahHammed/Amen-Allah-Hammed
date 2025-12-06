@@ -1,5 +1,5 @@
 .skills-section {
-    background: var(--bg-dark);
+    background: transparent;
     min-height: 100vh;
     display: flex;
     align-items: center;
