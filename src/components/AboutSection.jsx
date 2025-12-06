@@ -51,14 +51,6 @@ export default function AboutSection({ id = 'about' }) {
                         {/* Education/Stats Mini-Grid (Optional addition to keep content but match style) */}
                         <div className="mini-stats">
                             <div className="stat-item">
-                                <span className="stat-label">Experience</span>
-                                <span className="stat-value">3+ Years</span>
-                            </div>
-                            <div className="stat-item">
-                                <span className="stat-label">Projects</span>
-                                <span className="stat-value">20+</span>
-                            </div>
-                            <div className="stat-item">
                                 <span className="stat-label">Degree</span>
                                 <span className="stat-value">CS Student</span>
                             </div>
