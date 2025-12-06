@@ -219,6 +219,46 @@
     box-shadow: 0 5px 15px rgba(0, 245, 255, 0.3);
 }
 
+/* Status Styles */
+.submit-btn.sending {
+    background: var(--text-muted);
+    cursor: wait;
+}
+
+.submit-btn.success {
+    background: #10b981;
+    /* Green */
+    color: white;
+}
+
+.submit-btn.error {
+    background: #ef4444;
+    /* Red */
+    color: white;
+}
+
+.spinner {
+    animation: spin 1s linear infinite;
+    margin-right: 8px;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.error-message {
+    color: #ef4444;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
 /* Responsive */
 @media (max-width: 1024px) {
     .contact-container {

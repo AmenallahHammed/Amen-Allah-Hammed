@@ -1,15 +1,19 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
+import emailjs from '@emailjs/browser';
 import './ContactSection.css';
-import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaArrowRight, FaPaperPlane, FaLinkedin, FaGithub } from 'react-icons/fa';
+import { FaEnvelope, FaPhone, FaArrowRight, FaLinkedin, FaGithub, FaSpinner, FaCheckCircle, FaExclamationCircle } from 'react-icons/fa';
 
 export default function ContactSection({ id = 'contact' }) {
+    const form = useRef();
     const [formData, setFormData] = useState({
         name: '',
         email: '',
         message: ''
     });
 
-    const [submitted, setSubmitted] = useState(false);
+    // Status: idle, sending, success, error
+    const [status, setStatus] = useState('idle');
+    const [errorMessage, setErrorMessage] = useState('');
 
     const handleChange = (e) => {
         setFormData({
@@ -18,15 +22,34 @@ export default function ContactSection({ id = 'contact' }) {
         });
     };
 
-    const handleSubmit = (e) => {
+    const sendEmail = (e) => {
         e.preventDefault();
-        // Simulate form submission
-        console.log('Form submitted:', formData);
-        setSubmitted(true);
-        setTimeout(() => {
-            setSubmitted(false);
-            setFormData({ name: '', email: '', message: '' });
-        }, 3000);
+        setStatus('sending');
+
+        // ----------------------------------------------------------------------
+        // EMAILJS SETUP INSTRUCTIONS:
+        // 1. Create account at https://www.emailjs.com/
+        // 2. Add Email Service (e.g., Gmail) -> Get Service ID
+        // 3. Create Email Template -> Get Template ID
+        //    - Use variable names: {{user_name}}, {{user_email}}, {{message}}
+        // 4. Get Public Key from Account > General
+        // 5. Replace the placeholders below:
+        // ----------------------------------------------------------------------
+
+        const SERVICE_ID = 'service_a5p290n';
+        const TEMPLATE_ID = 'template_16rb4rv';
+        const PUBLIC_KEY = 'FstV21NJeOKvYLMpz';
+
+        emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, form.current, PUBLIC_KEY)
+            .then((result) => {
+                setStatus('success');
+                setFormData({ user_name: '', user_email: '', message: '' }); // Clear form
+                setTimeout(() => setStatus('idle'), 5000); // Reset status after 5s
+            }, (error) => {
+                setStatus('error');
+                setErrorMessage('Message failed to send. Please try again later.');
+                console.error(error.text);
+            });
     };
 
     return (
@@ -105,7 +128,7 @@ export default function ContactSection({ id = 'contact' }) {
                 {/* Right Column: Form */}
                 <div className="contact-right">
                     <div className="form-wrapper">
-                        <form onSubmit={handleSubmit}>
+                        <form ref={form} onSubmit={sendEmail}>
                             <div className="form-group">
                                 <label>Name</label>
                                 <input
@@ -113,7 +136,9 @@ export default function ContactSection({ id = 'contact' }) {
                                     name="name"
                                     value={formData.name}
                                     onChange={handleChange}
+                                    placeholder="Your Name"
                                     required
+                                    disabled={status === 'sending'}
                                 />
                             </div>
 
@@ -124,7 +149,9 @@ export default function ContactSection({ id = 'contact' }) {
                                     name="email"
                                     value={formData.email}
                                     onChange={handleChange}
+                                    placeholder="Your Email"
                                     required
+                                    disabled={status === 'sending'}
                                 />
                             </div>
 
@@ -135,13 +162,37 @@ export default function ContactSection({ id = 'contact' }) {
                                     value={formData.message}
                                     onChange={handleChange}
                                     rows="4"
+                                    placeholder="Your Message..."
                                     required
+                                    disabled={status === 'sending'}
                                 ></textarea>
                             </div>
 
-                            <button type="submit" className="submit-btn">
-                                {submitted ? 'Message Sent!' : 'Submit'}
+                            <button
+                                type="submit"
+                                className={`submit-btn ${status}`}
+                                disabled={status === 'sending' || status === 'success'}
+                            >
+                                {status === 'sending' ? (
+                                    <>
+                                        <FaSpinner className="spinner" /> Sending...
+                                    </>
+                                ) : status === 'success' ? (
+                                    <>
+                                        <FaCheckCircle /> Message Sent!
+                                    </>
+                                ) : status === 'error' ? (
+                                    <>
+                                        <FaExclamationCircle /> Try Again
+                                    </>
+                                ) : (
+                                    'Send Message'
+                                )}
                             </button>
+
+                            {status === 'error' && (
+                                <p className="error-message">{errorMessage}</p>
+                            )}
                         </form>
                     </div>
                 </div>
